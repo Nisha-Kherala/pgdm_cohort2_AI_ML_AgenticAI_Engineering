@@ -1,0 +1,355 @@
+SQL PRACTICE SET – AWESOME CHOCOLATES DATASET
+20 QUESTIONS | EASY → MEDIUM → HARD
+
+Dataset Tables:
+1. sales
+   Columns: SPID, GeoID, PID, SaleDate, Amount, Customers, Boxes
+2. people
+   Columns: Salesperson, SPID, Team, Location
+3. products
+   Columns: PID, Product, Category, Size, Cost_per_box
+4. geo
+   Columns: GeoID, Geo, Region
+
+Instructions:
+- Write SQL queries for all questions.
+- Do not modify the underlying data.
+- Try to solve each question independently before looking at solutions.
+- Questions are arranged from easy to hard.
+- Use MySQL syntax where database-specific syntax is required.
+
+============================================================
+EASY QUESTIONS
+============================================================
+
+Q1. Basic Filtering
+Display all sales transactions where Amount is greater than 10,000.
+Display SPID, PID, SaleDate, Amount, Customers and Boxes.
+
+Concepts: SELECT, WHERE, comparison operators.
+
+------------------------------------------------------------
+
+Q2. Sorting and Filtering
+Find all sales transactions where more than 500 boxes were sold.
+Display SaleDate, SPID, PID, Boxes and Amount.
+Sort the result by Boxes in descending order.
+
+Concepts: WHERE, ORDER BY, DESC.
+
+------------------------------------------------------------
+
+Q3. DISTINCT + Date Filtering
+Find all unique product IDs (PID) that were sold during the year 2021.
+Display only the unique PID values.
+
+Concepts: DISTINCT, WHERE, date filtering.
+
+------------------------------------------------------------
+
+Q4. Basic Aggregation
+Calculate the following for the complete sales table:
+- Total sales amount
+- Average sales amount
+- Maximum sales amount
+- Minimum sales amount
+- Total boxes sold
+- Total customers
+
+Return the results in one row.
+
+Concepts: SUM, AVG, MAX, MIN, aggregation.
+
+============================================================
+MEDIUM QUESTIONS
+============================================================
+
+Q5. Sales by Product
+Calculate total sales amount and total boxes sold for each PID.
+Display PID, total sales amount and total boxes sold.
+Sort by total sales amount from highest to lowest.
+
+Concepts: GROUP BY, SUM, ORDER BY.
+
+------------------------------------------------------------
+
+Q6. Sales by Product with HAVING
+Calculate total sales amount for each PID.
+Display only products whose total sales amount is greater than 500,000.
+Sort the result by total sales amount in descending order.
+
+Concepts: GROUP BY, SUM, HAVING, ORDER BY.
+
+------------------------------------------------------------
+
+Q7. Sales by Region
+Using the sales and geo tables, calculate total sales amount for each region.
+Display Region and total sales amount.
+Sort from highest to lowest.
+
+Concepts: INNER JOIN, GROUP BY, SUM, ORDER BY.
+
+------------------------------------------------------------
+
+Q8. Sales by Country
+Using sales and geo, calculate:
+- Total sales amount
+- Total boxes sold
+- Total customers
+
+for each country.
+
+Display country name and the three metrics.
+Sort by total sales amount descending.
+
+Concepts: JOIN, GROUP BY, multiple aggregate functions.
+
+------------------------------------------------------------
+
+Q9. Salesperson Performance
+Using sales and people, calculate total sales amount for every salesperson.
+Display:
+- Salesperson
+- SPID
+- Team
+- Total Sales
+
+Sort from highest to lowest total sales.
+
+Concepts: JOIN, GROUP BY, SUM, aliases, ORDER BY.
+
+------------------------------------------------------------
+
+Q10. Product Category Analysis
+Using sales and products, calculate total sales amount and total boxes sold for each product category.
+Display:
+- Category
+- Total Sales
+- Total Boxes
+
+Sort by Total Sales descending.
+
+Concepts: JOIN, GROUP BY, aggregation.
+
+------------------------------------------------------------
+
+Q11. Team Performance
+Using sales and people, calculate total sales amount for each team.
+Display:
+- Team
+- Number of sales transactions
+- Total Sales
+- Total Boxes
+
+Sort teams by Total Sales descending.
+
+Concepts: JOIN, COUNT, SUM, GROUP BY, ORDER BY.
+
+------------------------------------------------------------
+
+Q12. Monthly Sales
+Calculate total sales amount for each month of 2021.
+Display:
+- Month
+- Total Sales
+- Total Boxes
+
+Sort chronologically by month.
+
+Concepts: date functions, GROUP BY, SUM, ORDER BY.
+
+------------------------------------------------------------
+
+Q13. Product Cost Analysis
+Using sales and products, calculate the estimated total product cost for each product.
+
+Use:
+Estimated Product Cost = Total Boxes Sold × Cost_per_box
+
+Display:
+- PID
+- Product
+- Cost_per_box
+- Total Boxes
+- Estimated Product Cost
+
+Sort by Estimated Product Cost descending.
+
+Concepts: JOIN, GROUP BY, arithmetic calculations, aliases.
+
+------------------------------------------------------------
+
+Q14. Revenue per Box
+For every product, calculate:
+- Product
+- Total Sales
+- Total Boxes
+- Revenue per Box
+
+Revenue per Box = Total Sales / Total Boxes
+
+Sort products by Revenue per Box descending.
+Handle division by zero appropriately.
+
+Concepts: JOIN, GROUP BY, arithmetic calculations, NULLIF.
+
+------------------------------------------------------------
+
+Q15. Salesperson and Region Analysis
+Using sales, people and geo, calculate total sales for each salesperson in each region.
+
+Display:
+- Salesperson
+- Team
+- Region
+- Total Sales
+
+Sort by Region and then Total Sales descending.
+
+Concepts: multiple JOINs, GROUP BY, ORDER BY.
+
+------------------------------------------------------------
+
+Q16. High-Value Transactions by Category
+Find product categories where the average transaction Amount is greater than 8,000.
+
+Display:
+- Category
+- Number of transactions
+- Average transaction amount
+- Total sales amount
+
+Only include categories with an average transaction amount greater than 8,000.
+
+Concepts: JOIN, GROUP BY, AVG, SUM, COUNT, HAVING.
+
+============================================================
+HARD QUESTIONS
+============================================================
+
+Q17. Salesperson Performance Classification
+Using a CTE, calculate total sales for every salesperson.
+
+Then classify each salesperson:
+- Total Sales >= 1,000,000 → Excellent
+- Total Sales >= 500,000 → Good
+- Total Sales < 500,000 → Needs Improvement
+
+Display:
+- Salesperson
+- Team
+- Total Sales
+- Performance
+
+Sort by Total Sales descending.
+
+Concepts: CTE, SUM, CASE, GROUP BY, ORDER BY.
+
+------------------------------------------------------------
+
+Q18. Top 3 Salespeople in Each Region
+Using sales, people and geo:
+1. Calculate total sales for each salesperson in each region.
+2. Rank salespeople within each region based on total sales.
+3. Return only the top 3 salespeople from each region.
+
+Display:
+- Region
+- Salesperson
+- Total Sales
+- Regional Rank
+
+Concepts: multiple JOINs, CTE, GROUP BY, RANK/DENSE_RANK, PARTITION BY, window functions.
+
+------------------------------------------------------------
+
+Q19. Top 2 Products in Each Category
+Calculate total sales for every product.
+
+Then rank products within their category based on total sales.
+Return only the top 2 products from each category.
+
+Display:
+- Category
+- Product
+- Total Sales
+- Total Boxes
+- Category Rank
+
+Concepts: JOIN, CTE, GROUP BY, window functions, PARTITION BY, DENSE_RANK/ROW_NUMBER.
+
+------------------------------------------------------------
+
+Q20. Advanced Business Performance Analysis
+Create a complete product performance report.
+
+For every product, calculate:
+- Product
+- Category
+- Size
+- Total Sales
+- Total Boxes Sold
+- Total Customers
+- Average Transaction Amount
+- Revenue per Box
+- Estimated Product Cost
+- Estimated Profit
+- Sales Rank within Category
+
+Use:
+Revenue per Box = Total Sales / Total Boxes
+Estimated Product Cost = Total Boxes × Cost_per_box
+Estimated Profit = Total Sales - Estimated Product Cost
+
+Then return only the top 2 products from each category based on Total Sales.
+
+Handle division by zero appropriately.
+
+Concepts:
+- Multiple JOINs
+- CTEs
+- GROUP BY
+- SUM
+- AVG
+- CASE
+- NULLIF
+- Arithmetic calculations
+- Window functions
+- PARTITION BY
+- DENSE_RANK or ROW_NUMBER
+- Filtering ranked results
+
+============================================================
+CONCEPT COVERAGE
+============================================================
+
+SELECT                  Q1-Q20
+WHERE                   Q1-Q3
+DISTINCT                Q3
+ORDER BY                Q2, Q5-Q20
+Aggregate Functions     Q4-Q20
+GROUP BY                Q5-Q20
+HAVING                  Q6, Q16
+INNER JOIN              Q7-Q20
+Multiple JOINs          Q15, Q17-Q20
+COUNT                   Q4, Q11, Q16
+SUM                     Q4-Q20
+AVG                     Q4, Q16, Q20
+Date Functions          Q3, Q12
+CASE                    Q17, Q20
+NULLIF                   Q14, Q20
+Arithmetic Calculations Q13, Q14, Q20
+CTE                     Q17-Q20
+Window Functions        Q18-Q20
+PARTITION BY            Q18-Q20
+RANK/DENSE_RANK         Q18-Q20
+Business Analysis       Q17-Q20
+
+============================================================
+RECOMMENDED LEARNING FLOW
+============================================================
+
+Q1-Q4   : SQL fundamentals and aggregation
+Q5-Q10  : GROUP BY, HAVING and JOINs
+Q11-Q16 : Intermediate analytical SQL
+Q17-Q20 : Advanced SQL, CTEs and window functions

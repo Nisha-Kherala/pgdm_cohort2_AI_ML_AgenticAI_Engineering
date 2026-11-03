@@ -1,0 +1,654 @@
+SQL PRACTICE SET – RETAIL EVENTS DATASET
+20 QUESTIONS | EASY → MEDIUM → HARD
+
+DATASET OVERVIEW
+================
+
+This practice set uses the retail_events_db database.
+
+Main tables:
+
+1. dim_campaigns
+   - campaign_id
+   - campaign_name
+   - start_date
+   - end_date
+
+2. dim_products
+   - product_code
+   - product_name
+   - category
+
+3. dim_stores
+   - store_id
+   - city
+
+4. fact_events
+   - event_id
+   - store_id
+   - campaign_id
+   - product_code
+   - base_price
+   - promo_type
+   - quantity_sold(before_promo)
+   - quantity_sold(after_promo)
+
+The fact_events table stores product-level promotional event information.
+Use the dimension tables to obtain campaign, product and store details.
+
+IMPORTANT:
+- Use MySQL syntax.
+- Column names containing parentheses may need backticks.
+  Example:
+  `quantity_sold(before_promo)`
+  `quantity_sold(after_promo)`
+- Do not modify the data.
+- Write a separate SQL query for each question.
+- Questions are arranged from easy to hard.
+- Focus especially on JOINs, GROUP BY, HAVING, CASE, CTEs and window functions.
+
+============================================================
+EASY QUESTIONS
+============================================================
+
+Q1. Basic Filtering – High-Value Products
+Find all event records where the base_price is greater than 1,000.
+
+Display:
+- event_id
+- store_id
+- product_code
+- base_price
+- promo_type
+
+Concepts:
+SELECT, WHERE, comparison operators.
+
+-- ====================================================================
+-- Question 1: Basic Filtering – High-Value Products
+-- Business Objective: Filter and audit premium retail SKUs to assess high-ticket promotional exposure.
+-- Techniques Used: SELECT, WHERE, comparison operators
+-- ====================================================================
+
+------------------------------------------------------------
+
+Q2. Sorting Promotional Events
+Display all events where quantity sold after the promotion was greater than 100.
+
+Display:
+- event_id
+- product_code
+- promo_type
+- quantity_sold(before_promo)
+- quantity_sold(after_promo)
+
+Sort by quantity_sold(after_promo) in descending order.
+
+Concepts:
+WHERE, ORDER BY, DESC.
+
+-- ====================================================================
+-- Question 2: Sorting Promotional Events
+-- Business Objective: Identify high-velocity promotional event runs exceeding minimum volume thresholds.
+-- Techniques Used: SELECT, WHERE, ORDER BY, DESC
+-- ====================================================================
+
+------------------------------------------------------------
+
+Q3. DISTINCT Promotion Types
+Find all unique promotion types used in the dataset.
+
+Display only the unique promo_type values.
+
+Concepts:
+DISTINCT.
+
+-- ====================================================================
+-- Question 3: DISTINCT Promotion Types
+-- Business Objective: Inventory active discount and promotional mechanisms deployed across campaigns.
+-- Techniques Used: SELECT, DISTINCT
+-- ====================================================================
+
+------------------------------------------------------------
+
+Q4. Basic Aggregation
+Calculate the following for the complete fact_events table:
+
+- Total number of events
+- Total quantity sold before promotion
+- Total quantity sold after promotion
+- Average base price
+- Maximum base price
+- Minimum base price
+
+Return all metrics in one row.
+
+Concepts:
+COUNT, SUM, AVG, MAX, MIN.
+
+-- ====================================================================
+-- Question 4: Basic Aggregation
+-- Business Objective: Establish baseline portfolio volume, event activity, and catalog pricing boundaries.
+-- Techniques Used: COUNT, SUM, AVG, MAX, MIN
+-- ====================================================================
+
+============================================================
+MEDIUM QUESTIONS
+============================================================
+
+Q5. Sales Volume by Promotion Type
+For each promo_type, calculate:
+
+- Number of events
+- Total quantity sold before promotion
+- Total quantity sold after promotion
+
+Sort by total quantity sold after promotion in descending order.
+
+Concepts:
+GROUP BY, COUNT, SUM, ORDER BY.
+
+-- ====================================================================
+-- Question 5: Sales Volume by Promotion Type
+-- Business Objective: Evaluate volume throughput across distinct promotional discount structures.
+-- Techniques Used: GROUP BY, COUNT, SUM, ORDER BY DESC
+-- ====================================================================
+
+------------------------------------------------------------
+
+Q6. Promotion Uplift
+For every promotion type, calculate:
+
+- Total quantity before promotion
+- Total quantity after promotion
+- Quantity increase/decrease
+
+Use:
+
+Quantity Change = After Promo Quantity - Before Promo Quantity
+
+Display:
+- promo_type
+- total_before
+- total_after
+- quantity_change
+
+Sort by quantity_change descending.
+
+Concepts:
+GROUP BY, SUM, arithmetic calculations, aliases.
+
+-- ====================================================================
+-- Question 6: Promotion Uplift
+-- Business Objective: Quantify absolute unit expansion generated by each promotional deal mechanic.
+-- Techniques Used: GROUP BY, SUM, Arithmetic calculations, Column Aliasing, ORDER BY DESC
+-- ====================================================================
+
+------------------------------------------------------------
+
+Q7. Product Performance
+Using fact_events and dim_products, calculate total quantity sold after promotion for every product.
+
+Display:
+- product_code
+- product_name
+- category
+- total quantity after promotion
+
+Sort by total quantity after promotion descending.
+
+Concepts:
+INNER JOIN, GROUP BY, SUM, ORDER BY.
+
+-- ====================================================================
+-- Question 7: Product Performance
+-- Business Objective: Identify top-selling individual SKUs driven through campaign promotions.
+-- Techniques Used: INNER JOIN, GROUP BY, SUM, ORDER BY DESC
+-- ====================================================================
+
+------------------------------------------------------------
+
+Q8. Category-Level Performance
+Using fact_events and dim_products, calculate for every product category:
+
+- Number of events
+- Total quantity before promotion
+- Total quantity after promotion
+- Quantity change
+
+Sort categories by total quantity after promotion descending.
+
+Concepts:
+JOIN, GROUP BY, SUM, COUNT, arithmetic calculations.
+
+-- ====================================================================
+-- Question 8: Category-Level Performance
+-- Business Objective: Measure macro-level category response to promotional campaigns and inventory movements.
+-- Techniques Used: INNER JOIN, GROUP BY, COUNT, SUM, Arithmetic calculations, ORDER BY DESC
+-- ====================================================================
+
+------------------------------------------------------------
+
+Q9. Store Performance
+Using fact_events and dim_stores, calculate for every city:
+
+- Number of promotional events
+- Total quantity before promotion
+- Total quantity after promotion
+
+Display:
+- city
+- event_count
+- total_before
+- total_after
+
+Sort cities by total_after descending.
+
+Concepts:
+JOIN, GROUP BY, aggregation, ORDER BY.
+
+-- ====================================================================
+-- Question 9: Store Performance
+-- Business Objective: Benchmark city markets by promotional absorption to guide regional supply allocation.
+-- Techniques Used: INNER JOIN, GROUP BY, COUNT, SUM, ORDER BY DESC
+-- ====================================================================
+
+------------------------------------------------------------
+
+Q10. Campaign Performance
+Using fact_events and dim_campaigns, calculate for each campaign:
+
+- Campaign name
+- Start date
+- End date
+- Number of events
+- Total quantity before promotion
+- Total quantity after promotion
+
+Sort by total quantity after promotion descending.
+
+Concepts:
+JOIN, GROUP BY, date columns, aggregation.
+
+-- ====================================================================
+-- Question 10: Campaign Performance
+-- Business Objective: Compare macro campaign cycles (Diwali vs. Sankranti) on aggregate promotional volume output.
+-- Techniques Used: INNER JOIN, GROUP BY, COUNT, SUM, ORDER BY DESC
+-- ====================================================================
+
+------------------------------------------------------------
+
+Q11. Product Category with HAVING
+Find product categories where the total quantity sold after promotion is greater than 1,000.
+
+Display:
+- category
+- total quantity after promotion
+- average base price
+
+Sort by total quantity after promotion descending.
+
+Concepts:
+JOIN, GROUP BY, HAVING, AVG, SUM.
+
+-- ====================================================================
+-- Question 11: Product Category with HAVING
+-- Business Objective: Filter for high-volume product categories while monitoring average unit price points.
+-- Techniques Used: INNER JOIN, GROUP BY, HAVING, SUM, AVG, ORDER BY DESC
+-- ====================================================================
+
+------------------------------------------------------------
+
+Q12. Store + Category Analysis
+Using fact_events, dim_stores and dim_products, calculate total quantity sold after promotion for every combination of:
+
+- City
+- Product category
+
+Display:
+- city
+- category
+- total quantity after promotion
+
+Sort first by city and then by total quantity descending.
+
+Concepts:
+Multiple JOINs, GROUP BY, ORDER BY.
+
+-- ====================================================================
+-- Question 12: Store + Category Analysis
+-- Business Objective: Map regional consumer category demand across individual metropolitan clusters.
+-- Techniques Used: Multiple INNER JOINs, Multi-column GROUP BY, SUM, ORDER BY
+-- ====================================================================
+
+------------------------------------------------------------
+
+Q13. Promotion Effectiveness by Product
+For each product, calculate:
+
+- Product name
+- Category
+- Total quantity before promotion
+- Total quantity after promotion
+- Quantity change
+- Percentage change
+
+Use:
+
+Percentage Change =
+((After Promo - Before Promo) / Before Promo) * 100
+
+Handle division by zero appropriately.
+
+Sort by percentage change descending.
+
+Concepts:
+JOIN, GROUP BY, arithmetic calculations, NULLIF, percentage calculations.
+
+-- ====================================================================
+-- Question 13: Promotion Effectiveness by Product
+-- Business Objective: Determine relative SKU growth rate to highlight high-elasticity products.
+-- Techniques Used: INNER JOIN, GROUP BY, SUM, Arithmetic calculations, NULLIF, ORDER BY DESC
+-- ====================================================================
+
+------------------------------------------------------------
+
+Q14. Campaign and Promotion Type Analysis
+For each campaign and promo_type combination, calculate:
+
+- Number of events
+- Total quantity before promotion
+- Total quantity after promotion
+- Quantity change
+
+Display:
+- campaign_name
+- promo_type
+- event_count
+- total_before
+- total_after
+- quantity_change
+
+Sort by campaign_name and quantity_change descending.
+
+Concepts:
+Multiple GROUP BY columns, JOIN, aggregation, ORDER BY.
+
+-- ====================================================================
+-- Question 14: Campaign and Promotion Type Analysis
+-- Business Objective: Analyze which deal mechanics drove the strongest incremental gains within each festive campaign.
+-- Techniques Used: INNER JOIN, Multi-column GROUP BY, COUNT, SUM, Arithmetic calculations, ORDER BY
+-- ====================================================================
+
+------------------------------------------------------------
+
+Q15. Product Revenue Before and After Promotion
+For each product, calculate:
+
+1. Revenue before promotion =
+   base_price × quantity_sold(before_promo)
+
+2. Revenue after promotion =
+   base_price × quantity_sold(after_promo)
+
+3. Revenue difference =
+   Revenue after - Revenue before
+
+Display:
+- product_name
+- category
+- revenue_before
+- revenue_after
+- revenue_difference
+
+Sort by revenue_difference descending.
+
+Concepts:
+JOIN, GROUP BY, SUM, arithmetic calculations, aliases.
+
+-- ====================================================================
+-- Question 15: Product Revenue Before and After Promotion
+-- Business Objective: Evaluate top-line fiscal impact and revenue expansion per SKU post-discount implementation.
+-- Techniques Used: INNER JOIN, GROUP BY, SUM with arithmetic expressions, Aliasing, ORDER BY DESC
+-- ====================================================================
+
+------------------------------------------------------------
+
+Q16. Classify Promotion Performance
+For every promotion type, calculate total quantity before and after promotion.
+
+Then classify the promotion using CASE:
+
+- Percentage change >= 50% → "High Impact"
+- Percentage change >= 20% → "Medium Impact"
+- Percentage change < 20% → "Low Impact"
+
+Display:
+- promo_type
+- total_before
+- total_after
+- percentage_change
+- performance_category
+
+Sort by percentage_change descending.
+
+Concepts:
+GROUP BY, CASE, arithmetic calculations, NULLIF, aliases.
+
+-- ====================================================================
+-- Question 16: Classify Promotion Performance
+-- Business Objective: Tier discount structures into operational impact classes to rationalize marketing spend.
+-- Techniques Used: GROUP BY, CASE statements, SUM, Arithmetic expressions, NULLIF, Aliasing, ORDER BY DESC
+-- ====================================================================
+
+============================================================
+HARD QUESTIONS
+============================================================
+
+Q17. Top Products Within Each Category
+Using a CTE:
+
+1. Calculate total quantity sold after promotion for every product.
+2. Rank products within each category based on total quantity sold after promotion.
+3. Return only the top 2 products from every category.
+
+Display:
+- category
+- product_name
+- total_quantity_after
+- category_rank
+
+Concepts:
+CTE, JOIN, GROUP BY, DENSE_RANK/ROW_NUMBER,
+PARTITION BY, window functions.
+
+-- ====================================================================
+-- Question 17: Top Products Within Each Category
+-- Business Objective: Identify category volume leaders to secure priority shelf and digital placement.
+-- Techniques Used: Common Table Expression (CTE), INNER JOIN, GROUP BY, DENSE_RANK() OVER (PARTITION BY), Window Filtering
+-- ====================================================================
+
+------------------------------------------------------------
+
+Q18. Best-Performing Stores Within Each City
+Calculate total quantity sold after promotion for each store.
+
+Join dim_stores to obtain the city.
+
+Then rank stores within each city based on total quantity sold after promotion.
+
+Return the top 2 stores from each city.
+
+Display:
+- city
+- store_id
+- total_quantity_after
+- city_rank
+
+Concepts:
+JOIN, CTE, GROUP BY, window functions,
+PARTITION BY, RANK/DENSE_RANK.
+
+-- ====================================================================
+-- Question 18: Best-Performing Stores Within Each City
+-- Business Objective: Identify outlier stores to model regional best practices and resource distribution.
+-- Techniques Used: Common Table Expression (CTE), INNER JOIN, GROUP BY, DENSE_RANK() OVER (PARTITION BY), Window Filtering
+-- ====================================================================
+
+------------------------------------------------------------
+
+Q19. Campaign-Level Product Performance
+For every campaign and product:
+
+Calculate:
+- Total quantity before promotion
+- Total quantity after promotion
+- Quantity change
+- Percentage change
+
+Then rank products within each campaign based on percentage change.
+
+Return the top 3 products for every campaign.
+
+Display:
+- campaign_name
+- product_name
+- total_before
+- total_after
+- quantity_change
+- percentage_change
+- campaign_rank
+
+Concepts:
+Multiple JOINs, CTE, GROUP BY, arithmetic calculations,
+NULLIF, window functions, PARTITION BY, ranking.
+
+-- ====================================================================
+-- Question 19: Campaign-Level Product Performance
+-- Business Objective: Surface peak responsive growth SKUs for individual festive seasons to optimize seasonal replenishment.
+-- Techniques Used: Multiple INNER JOINs, CTE, Multi-column GROUP BY, NULLIF, DENSE_RANK() OVER (PARTITION BY), Window Filtering
+-- ====================================================================
+
+------------------------------------------------------------
+
+Q20. Complete Promotional Performance Analysis
+Create a complete analytical report at the product-category level.
+
+For every product, calculate:
+
+- Product name
+- Category
+- Number of promotional events
+- Total quantity before promotion
+- Total quantity after promotion
+- Quantity change
+- Percentage change
+- Revenue before promotion
+- Revenue after promotion
+- Revenue change
+- Average base price
+- Product rank within its category
+
+Use:
+
+Quantity Change =
+Total After - Total Before
+
+Percentage Change =
+((Total After - Total Before) / Total Before) * 100
+
+Revenue Before =
+SUM(base_price × quantity_before)
+
+Revenue After =
+SUM(base_price × quantity_after)
+
+Revenue Change =
+Revenue After - Revenue Before
+
+Then:
+
+1. Rank products within each category by Revenue Change.
+2. Return only the top 2 products from each category.
+3. Use appropriate handling for division by zero.
+
+Concepts:
+- Multiple JOINs
+- CTEs
+- GROUP BY
+- COUNT
+- SUM
+- AVG
+- CASE
+- NULLIF
+- Arithmetic calculations
+- Percentage calculations
+- Window functions
+- PARTITION BY
+- DENSE_RANK / ROW_NUMBER
+- Filtering ranked results
+- Business analysis
+
+-- ====================================================================
+-- Question 20: Complete Promotional Performance Analysis
+-- Business Objective: Provide an executive-level scorecard of category margin drivers and revenue leaders post-promotion.
+-- Techniques Used: Multiple INNER JOINs, Multi-CTE Pipeline, Aggregate arithmetic, NULLIF, DENSE_RANK() OVER (PARTITION BY), Subquery Filtering
+-- ====================================================================
+
+============================================================
+CONCEPT COVERAGE
+============================================================
+
+SELECT                  Q1-Q20
+WHERE                   Q1-Q3
+DISTINCT                Q3
+ORDER BY                Q2-Q20
+COUNT                   Q4-Q20
+SUM                     Q4-Q20
+AVG                     Q4, Q11, Q16, Q20
+MIN / MAX               Q4
+GROUP BY                Q5-Q20
+HAVING                  Q11
+INNER JOIN              Q7-Q20
+Multiple JOINs          Q12, Q14, Q17-Q20
+Arithmetic              Q6, Q13, Q15-Q20
+NULLIF                  Q13, Q16, Q19, Q20
+CASE                    Q16, Q20
+CTE                     Q17-Q20
+Window Functions        Q17-Q20
+PARTITION BY            Q17-Q20
+RANK/DENSE_RANK         Q17-Q20
+Business Analysis       Q13-Q20
+
+============================================================
+RECOMMENDED LEARNING FLOW
+============================================================
+
+Q1-Q4:
+SQL fundamentals, filtering and aggregation.
+
+Q5-Q10:
+GROUP BY, JOINs and basic business analysis.
+
+Q11-Q16:
+HAVING, multiple JOINs, calculations, percentages and CASE.
+
+Q17-Q20:
+CTEs, window functions, ranking and advanced business analysis.
+
+============================================================
+IMPORTANT BUSINESS QUESTIONS LEARNERS SHOULD THINK ABOUT
+============================================================
+
+While solving the questions, learners should think about:
+
+1. Which promotion types generate the highest increase in quantity?
+2. Which products respond most strongly to promotions?
+3. Which categories perform best after promotions?
+4. Which cities/stores have the highest promotional volume?
+5. Which campaigns generate the strongest product performance?
+6. Does a higher quantity increase necessarily mean higher revenue?
+7. Which products have the highest revenue improvement after promotion?
+8. Which products should be investigated for weak promotional performance?
+
+Do not answer these questions separately. Use SQL queries to derive the answers.
