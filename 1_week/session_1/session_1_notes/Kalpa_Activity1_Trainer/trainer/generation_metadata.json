@@ -1,0 +1,14 @@
+{
+  "seed": 20261005,
+  "row_counts": {
+    "periods": 2,
+    "channels": 3,
+    "customers": 18000,
+    "orders": 106400,
+    "order_costs": 106400,
+    "marketing_spend": 144
+  },
+  "currency": "INR",
+  "monetary_precision": "whole rupees",
+  "synthetic": true
+}

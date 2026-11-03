@@ -1,0 +1,32 @@
+table,field,type_or_unit,key,example,meaning,rule
+periods,period_id,TEXT,PK,FY2024_25,Financial-year key.,FY2024_25 or FY2025_26
+periods,period_label,TEXT,,FY 2024-25,Human-readable financial year.,Two labels
+periods,start_date,DATE,,01/04/24,Inclusive reporting start.,ISO YYYY-MM-DD
+periods,end_date,DATE,,31/03/25,Inclusive reporting end.,ISO YYYY-MM-DD
+periods,role,TEXT,,previous,Chronological role in comparison.,previous or current
+channels,channel_id,TEXT,PK,APP,Stable channel key.,"APP, WEB, STORE"
+channels,channel_name,TEXT,,Mobile app,Channel display name.,Three channel names
+customers,customer_id,TEXT,PK,C000001,Synthetic customer key; not a person identifier.,C followed by six digits
+customers,segment,TEXT,,Retail-Core,Stable customer segment for both years.,"Business, Retail-Core, Retail-Plus, Student"
+customers,city,TEXT,,Gurugram,Synthetic home city.,Ten Indian cities
+customers,region,TEXT,,North,Region associated with city.,"North, South, East, West"
+customers,signup_date,DATE,,18/05/23,Registration date; precedes every order.,ISO YYYY-MM-DD
+orders,order_id,TEXT,PK,O0000001,Synthetic order key.,O followed by seven digits
+orders,customer_id,TEXT,FK customers.customer_id,C000001,Customer placing the order.,Must exist in customers
+orders,period_id,TEXT,FK periods.period_id,FY2024_25,Financial year containing order_date.,Must exist in periods
+orders,order_date,DATE,,15/06/24,Order booking date; recognition assigned to this financial year.,ISO date inside its period
+orders,channel_id,TEXT,FK channels.channel_id,APP,Channel in which this order was placed.,Must exist in channels
+orders,status,TEXT,,COMPLETED,Final order state at the closed snapshot.,COMPLETED or CANCELLED
+orders,gross_amount,INTEGER INR,,28500,Value before discounts and refunds; excludes indirect tax.,Nonnegative whole rupees
+orders,discount_amount,INTEGER INR,,1500,Discount already granted on the order.,Nonnegative; gross >= discount + refund
+orders,refund_amount,INTEGER INR,,1000,Settled partial refund assigned to this order and period.,Nonnegative; gross >= discount + refund
+order_costs,order_id,TEXT,PK; FK orders.order_id,O0000001,The order to which the cost record belongs.,Exactly one row for every order
+order_costs,product_cost,INTEGER INR,,16000,Recognised product cost after applicable recoveries.,Nonnegative whole rupees
+order_costs,fulfilment_cost,INTEGER INR,,750,"Recognised packing, shipping and handling cost.",Nonnegative whole rupees
+order_costs,payment_cost,INTEGER INR,,240,Recognised payment processing cost.,Nonnegative whole rupees
+marketing_spend,spend_id,TEXT,PK,M00001,Historical expense-record key.,M followed by five digits
+marketing_spend,period_id,TEXT,FK periods.period_id,FY2024_25,Period in which expense was incurred.,Must exist in periods
+marketing_spend,month_start,DATE,,01/04/24,"Accounting month, represented by its first day.",Inside associated period
+marketing_spend,channel_id,TEXT,FK channels.channel_id,WEB,Channel receiving this marketing expenditure.,Must exist in channels
+marketing_spend,purpose,TEXT,,Acquisition,Historical expenditure purpose.,Acquisition or Retention
+marketing_spend,amount,INTEGER INR,,620000,Cost incurred in this month/channel/purpose.,Nonnegative whole rupees

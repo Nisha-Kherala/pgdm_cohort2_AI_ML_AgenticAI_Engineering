@@ -1,0 +1,669 @@
+{
+  "status": "PASS",
+  "checks_passed": 95,
+  "checks": [
+    {
+      "check": "periods: primary key nonblank and unique",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "periods: no missing field values",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "channels: primary key nonblank and unique",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "channels: no missing field values",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "customers: primary key nonblank and unique",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "customers: no missing field values",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "orders: primary key nonblank and unique",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "orders: no missing field values",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "order_costs: primary key nonblank and unique",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "order_costs: no missing field values",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "marketing_spend: primary key nonblank and unique",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "marketing_spend: no missing field values",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "orders -> customers FK",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "orders -> periods FK",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "orders -> channels FK",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "order_costs -> orders exact one-to-one coverage",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "marketing -> periods and channels FKs",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "marketing compound grain unique",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "orders dated inside their period",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "marketing month inside its period and first day",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "signup precedes every order",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "statuses permitted",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "monetary fields nonnegative integers",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "discount plus refund does not exceed gross",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "pre-dispatch cancellations have zero tracked order costs",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "FY2024_25: positive recognised order revenue",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "FY2024_25: revenue tree exact identity",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "FY2024_25: segment revenue and orders tie out",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "FY2024_25: customer registry differs from buyers",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "FY2025_26: positive recognised order revenue",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "FY2025_26: revenue tree exact identity",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "FY2025_26: segment revenue and orders tie out",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "FY2025_26: customer registry differs from buyers",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "FY2024_25: agreed completed_orders",
+      "passed": true,
+      "details": "50000 == 50000"
+    },
+    {
+      "check": "FY2024_25: agreed purchasing_customers",
+      "passed": true,
+      "details": "10000 == 10000"
+    },
+    {
+      "check": "FY2024_25: agreed revenue",
+      "passed": true,
+      "details": "1000000000 == 1000000000"
+    },
+    {
+      "check": "FY2024_25: agreed orders_per_customer",
+      "passed": true,
+      "details": "5.0 == 5"
+    },
+    {
+      "check": "FY2024_25: agreed revenue_per_order",
+      "passed": true,
+      "details": "20000.0 == 20000"
+    },
+    {
+      "check": "FY2024_25: agreed total_cost",
+      "passed": true,
+      "details": "800000000 == 800000000"
+    },
+    {
+      "check": "FY2024_25: agreed contribution",
+      "passed": true,
+      "details": "200000000 == 200000000"
+    },
+    {
+      "check": "FY2024_25: agreed contribution_margin_pct",
+      "passed": true,
+      "details": "20.0 == 20"
+    },
+    {
+      "check": "FY2025_26: agreed completed_orders",
+      "passed": true,
+      "details": "52000 == 52000"
+    },
+    {
+      "check": "FY2025_26: agreed purchasing_customers",
+      "passed": true,
+      "details": "13000 == 13000"
+    },
+    {
+      "check": "FY2025_26: agreed revenue",
+      "passed": true,
+      "details": "1040000000 == 1040000000"
+    },
+    {
+      "check": "FY2025_26: agreed orders_per_customer",
+      "passed": true,
+      "details": "4.0 == 4"
+    },
+    {
+      "check": "FY2025_26: agreed revenue_per_order",
+      "passed": true,
+      "details": "20000.0 == 20000"
+    },
+    {
+      "check": "FY2025_26: agreed total_cost",
+      "passed": true,
+      "details": "884000000 == 884000000"
+    },
+    {
+      "check": "FY2025_26: agreed contribution",
+      "passed": true,
+      "details": "156000000 == 156000000"
+    },
+    {
+      "check": "FY2025_26: agreed contribution_margin_pct",
+      "passed": true,
+      "details": "15.0 == 15"
+    },
+    {
+      "check": "SQLite integrity_check",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "SQLite foreign_key_check",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "periods: database row count equals CSV",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "periods: every stored row matches CSV",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "channels: database row count equals CSV",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "channels: every stored row matches CSV",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "customers: database row count equals CSV",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "customers: every stored row matches CSV",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "orders: database row count equals CSV",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "orders: every stored row matches CSV",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "order_costs: database row count equals CSV",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "order_costs: every stored row matches CSV",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "marketing_spend: database row count equals CSV",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "marketing_spend: every stored row matches CSV",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_1_solution.sql: FY2024_25 Python/SQL completed_orders",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_1_solution.sql: FY2024_25 Python/SQL purchasing_customers",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_1_solution.sql: FY2024_25 Python/SQL revenue",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_1_solution.sql: FY2024_25 Python/SQL orders_per_customer",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_1_solution.sql: FY2024_25 Python/SQL revenue_per_order",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_1_solution.sql: FY2025_26 Python/SQL completed_orders",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_1_solution.sql: FY2025_26 Python/SQL purchasing_customers",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_1_solution.sql: FY2025_26 Python/SQL revenue",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_1_solution.sql: FY2025_26 Python/SQL orders_per_customer",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_1_solution.sql: FY2025_26 Python/SQL revenue_per_order",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_2_solution.sql: FY2024_25 Python/SQL revenue",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_2_solution.sql: FY2024_25 Python/SQL product_cost",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_2_solution.sql: FY2024_25 Python/SQL fulfilment_cost",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_2_solution.sql: FY2024_25 Python/SQL payment_cost",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_2_solution.sql: FY2024_25 Python/SQL marketing_cost",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_2_solution.sql: FY2024_25 Python/SQL total_cost",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_2_solution.sql: FY2024_25 Python/SQL contribution",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_2_solution.sql: FY2024_25 Python/SQL contribution_margin_pct",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "FY2024_25: SQL guardrail label",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_2_solution.sql: FY2025_26 Python/SQL revenue",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_2_solution.sql: FY2025_26 Python/SQL product_cost",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_2_solution.sql: FY2025_26 Python/SQL fulfilment_cost",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_2_solution.sql: FY2025_26 Python/SQL payment_cost",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_2_solution.sql: FY2025_26 Python/SQL marketing_cost",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_2_solution.sql: FY2025_26 Python/SQL total_cost",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_2_solution.sql: FY2025_26 Python/SQL contribution",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "exercise_2_solution.sql: FY2025_26 Python/SQL contribution_margin_pct",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "FY2025_26: SQL guardrail label",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "status omission changes both order count and revenue",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "count(*) is not purchasing customers",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "averages hide different order distributions",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "period-level detail join produces obvious fanout",
+      "passed": true,
+      "details": ""
+    }
+  ],
+  "python_results": {
+    "FY2024_25": {
+      "period_label": "FY 2024-25",
+      "completed_orders": 50000,
+      "purchasing_customers": 10000,
+      "revenue": 1000000000,
+      "orders_per_customer": 5.0,
+      "revenue_per_order": 20000.0,
+      "product_cost": 680000000,
+      "fulfilment_cost": 40000000,
+      "payment_cost": 10000000,
+      "marketing_cost": 70000000,
+      "total_cost": 800000000,
+      "contribution": 200000000,
+      "contribution_margin_pct": 20.0
+    },
+    "FY2025_26": {
+      "period_label": "FY 2025-26",
+      "completed_orders": 52000,
+      "purchasing_customers": 13000,
+      "revenue": 1040000000,
+      "orders_per_customer": 4.0,
+      "revenue_per_order": 20000.0,
+      "product_cost": 716000000,
+      "fulfilment_cost": 57200000,
+      "payment_cost": 15600000,
+      "marketing_cost": 95200000,
+      "total_cost": 884000000,
+      "contribution": 156000000,
+      "contribution_margin_pct": 15.0
+    }
+  },
+  "sql_results": {
+    "exercise_1_solution.sql": [
+      {
+        "period_label": "FY 2024-25",
+        "completed_orders": 50000,
+        "purchasing_customers": 10000,
+        "revenue": 1000000000,
+        "orders_per_customer": 5.0,
+        "revenue_per_order": 20000.0
+      },
+      {
+        "period_label": "FY 2025-26",
+        "completed_orders": 52000,
+        "purchasing_customers": 13000,
+        "revenue": 1040000000,
+        "orders_per_customer": 4.0,
+        "revenue_per_order": 20000.0
+      }
+    ],
+    "exercise_2_solution.sql": [
+      {
+        "period_label": "FY 2024-25",
+        "revenue": 1000000000,
+        "product_cost": 680000000,
+        "fulfilment_cost": 40000000,
+        "payment_cost": 10000000,
+        "marketing_cost": 70000000,
+        "total_cost": 800000000,
+        "contribution": 200000000,
+        "contribution_margin_pct": 20.0,
+        "margin_floor": "MET"
+      },
+      {
+        "period_label": "FY 2025-26",
+        "revenue": 1040000000,
+        "product_cost": 716000000,
+        "fulfilment_cost": 57200000,
+        "payment_cost": 15600000,
+        "marketing_cost": 95200000,
+        "total_cost": 884000000,
+        "contribution": 156000000,
+        "contribution_margin_pct": 15.0,
+        "margin_floor": "BREACHED"
+      }
+    ]
+  },
+  "descriptive_statistics": {
+    "FY2024_25": {
+      "order_value_mean": 20000,
+      "order_value_median": 7978.0,
+      "order_value_q1": 4024.75,
+      "order_value_q3": 17475.0,
+      "order_value_iqr": 13450.25,
+      "order_value_min": 205,
+      "order_value_max": 807392,
+      "order_value_std_population": 37314.56210987555,
+      "orders_per_customer_median": 4.0,
+      "orders_per_customer_min": 1,
+      "orders_per_customer_max": 66
+    },
+    "FY2025_26": {
+      "order_value_mean": 20000,
+      "order_value_median": 7394.0,
+      "order_value_q1": 3675.0,
+      "order_value_q3": 16858.5,
+      "order_value_iqr": 13183.5,
+      "order_value_min": 211,
+      "order_value_max": 797747,
+      "order_value_std_population": 38108.84441890501,
+      "orders_per_customer_median": 3.0,
+      "orders_per_customer_min": 1,
+      "orders_per_customer_max": 65
+    }
+  },
+  "segment_results": [
+    {
+      "period_id": "FY2024_25",
+      "segment": "Business",
+      "orders": 5000,
+      "customers": 500,
+      "revenue": 500000000,
+      "orders_per_customer": 10.0
+    },
+    {
+      "period_id": "FY2024_25",
+      "segment": "Retail-Core",
+      "orders": 27500,
+      "customers": 5500,
+      "revenue": 300000000,
+      "orders_per_customer": 5.0
+    },
+    {
+      "period_id": "FY2024_25",
+      "segment": "Retail-Plus",
+      "orders": 15000,
+      "customers": 3000,
+      "revenue": 180000000,
+      "orders_per_customer": 5.0
+    },
+    {
+      "period_id": "FY2024_25",
+      "segment": "Student",
+      "orders": 2500,
+      "customers": 1000,
+      "revenue": 20000000,
+      "orders_per_customer": 2.5
+    },
+    {
+      "period_id": "FY2025_26",
+      "segment": "Business",
+      "orders": 6000,
+      "customers": 750,
+      "revenue": 580000000,
+      "orders_per_customer": 8.0
+    },
+    {
+      "period_id": "FY2025_26",
+      "segment": "Retail-Core",
+      "orders": 31500,
+      "customers": 7500,
+      "revenue": 325000000,
+      "orders_per_customer": 4.2
+    },
+    {
+      "period_id": "FY2025_26",
+      "segment": "Retail-Plus",
+      "orders": 10500,
+      "customers": 3100,
+      "revenue": 110000000,
+      "orders_per_customer": 3.3870967741935485
+    },
+    {
+      "period_id": "FY2025_26",
+      "segment": "Student",
+      "orders": 4000,
+      "customers": 1650,
+      "revenue": 25000000,
+      "orders_per_customer": 2.4242424242424243
+    }
+  ],
+  "row_counts": {
+    "periods": 2,
+    "channels": 3,
+    "customers": 18000,
+    "orders": 106400,
+    "order_costs": 106400,
+    "marketing_spend": 144
+  },
+  "checksums": {
+    "channels.csv": "7b54950e39e3fa4ab59ec02572df0a886c8e00ba8c6c6c3face4d78b36a8b6d6",
+    "customers.csv": "0c2ba94f51172da585533023df4dd3e214b1920497edd30853af44c264fbfcc3",
+    "marketing_spend.csv": "ff2feb2cc804d4111d2dcaa87403dd59365e837b3bdf348576e32d7f63709352",
+    "order_costs.csv": "3118edc9d8d2bf52cedc4c9b72437592ea5992664c45c4e39b823e5775c13135",
+    "orders.csv": "750548c6407f4f2a314487572d6620bed107d66ff01c1c786cb68ed8e0e4f01f",
+    "periods.csv": "fe0d8a634f42dcc2c6e8e63ecc994724fb7eab43cf9da029a004987cecd07706"
+  }
+}

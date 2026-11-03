@@ -1,0 +1,128 @@
+{
+  "metrics": {
+    "FY2024_25": {
+      "period_label": "FY 2024-25",
+      "completed_orders": 50000,
+      "purchasing_customers": 10000,
+      "revenue": 1000000000,
+      "orders_per_customer": 5.0,
+      "revenue_per_order": 20000.0,
+      "product_cost": 680000000,
+      "fulfilment_cost": 40000000,
+      "payment_cost": 10000000,
+      "marketing_cost": 70000000,
+      "total_cost": 800000000,
+      "contribution": 200000000,
+      "contribution_margin_pct": 20.0
+    },
+    "FY2025_26": {
+      "period_label": "FY 2025-26",
+      "completed_orders": 52000,
+      "purchasing_customers": 13000,
+      "revenue": 1040000000,
+      "orders_per_customer": 4.0,
+      "revenue_per_order": 20000.0,
+      "product_cost": 716000000,
+      "fulfilment_cost": 57200000,
+      "payment_cost": 15600000,
+      "marketing_cost": 95200000,
+      "total_cost": 884000000,
+      "contribution": 156000000,
+      "contribution_margin_pct": 15.0
+    }
+  },
+  "statistics": {
+    "FY2024_25": {
+      "order_value_mean": 20000,
+      "order_value_median": 7978.0,
+      "order_value_q1": 4024.75,
+      "order_value_q3": 17475.0,
+      "order_value_iqr": 13450.25,
+      "order_value_min": 205,
+      "order_value_max": 807392,
+      "order_value_std_population": 37314.56210987555,
+      "orders_per_customer_median": 4.0,
+      "orders_per_customer_min": 1,
+      "orders_per_customer_max": 66
+    },
+    "FY2025_26": {
+      "order_value_mean": 20000,
+      "order_value_median": 7394.0,
+      "order_value_q1": 3675.0,
+      "order_value_q3": 16858.5,
+      "order_value_iqr": 13183.5,
+      "order_value_min": 211,
+      "order_value_max": 797747,
+      "order_value_std_population": 38108.84441890501,
+      "orders_per_customer_median": 3.0,
+      "orders_per_customer_min": 1,
+      "orders_per_customer_max": 65
+    }
+  },
+  "segments": [
+    {
+      "period_id": "FY2024_25",
+      "segment": "Business",
+      "orders": 5000,
+      "customers": 500,
+      "revenue": 500000000,
+      "orders_per_customer": 10.0
+    },
+    {
+      "period_id": "FY2024_25",
+      "segment": "Retail-Core",
+      "orders": 27500,
+      "customers": 5500,
+      "revenue": 300000000,
+      "orders_per_customer": 5.0
+    },
+    {
+      "period_id": "FY2024_25",
+      "segment": "Retail-Plus",
+      "orders": 15000,
+      "customers": 3000,
+      "revenue": 180000000,
+      "orders_per_customer": 5.0
+    },
+    {
+      "period_id": "FY2024_25",
+      "segment": "Student",
+      "orders": 2500,
+      "customers": 1000,
+      "revenue": 20000000,
+      "orders_per_customer": 2.5
+    },
+    {
+      "period_id": "FY2025_26",
+      "segment": "Business",
+      "orders": 6000,
+      "customers": 750,
+      "revenue": 580000000,
+      "orders_per_customer": 8.0
+    },
+    {
+      "period_id": "FY2025_26",
+      "segment": "Retail-Core",
+      "orders": 31500,
+      "customers": 7500,
+      "revenue": 325000000,
+      "orders_per_customer": 4.2
+    },
+    {
+      "period_id": "FY2025_26",
+      "segment": "Retail-Plus",
+      "orders": 10500,
+      "customers": 3100,
+      "revenue": 110000000,
+      "orders_per_customer": 3.3870967741935485
+    },
+    {
+      "period_id": "FY2025_26",
+      "segment": "Student",
+      "orders": 4000,
+      "customers": 1650,
+      "revenue": 25000000,
+      "orders_per_customer": 2.4242424242424243
+    }
+  ]
+}
