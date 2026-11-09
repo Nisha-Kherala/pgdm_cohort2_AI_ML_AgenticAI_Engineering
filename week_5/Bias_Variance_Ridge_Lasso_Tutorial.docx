@@ -1,45 +1,0 @@
-Bias, Variance, Ridge, Lasso & Lambda
-A practical tutorial for Linear and Logistic Regression
-Learning objectives
-Distinguish bias from variance using everyday examples.
-Explain underfitting and overfitting.
-Understand how Ridge and Lasso regularisation work.
-Explain the role of lambda (λ) and implement regularised models in Python.
-1. Bias and variance: the basic idea
-Bias is error caused by assumptions that are too simple for the real pattern. Variance is sensitivity to the particular training sample: a high-variance model may change substantially when trained on a different sample.
-Example A — high bias (underfitting)
-Suppose house prices rise with area, age, location and amenities, and the relationship is curved. A model using only one straight-line relationship between area and price may miss important patterns. It performs poorly on both training and test data. This is high bias / underfitting.
-Example B — high variance (overfitting)
-Suppose a very deep decision tree memorises every training house, including unusual noise. Training error can be nearly zero, but performance on new houses is poor. A different training sample may produce a very different tree. This is high variance / overfitting.
-A useful classroom diagnostic: compare training and validation error. High error on both often indicates underfitting; low training error but much higher validation error often indicates overfitting.
-2. Regularisation: the shared idea
-Regularisation adds a cost for large model coefficients to the usual prediction loss. The model now balances fitting the data against keeping coefficients controlled. This often reduces variance, though too much regularisation increases bias.
-Ridge (L2)
-Ridge adds λ times the sum of squared coefficients: Loss = data loss + λ Σ βⱼ². It usually shrinks coefficients toward zero, but rarely makes them exactly zero. It is useful when many features contribute and/or predictors are correlated.
-Lasso (L1)
-Lasso adds λ times the sum of absolute coefficients: Loss = data loss + λ Σ |βⱼ|. It can set some coefficients exactly to zero, so it can perform feature selection. With strongly correlated features, which feature remains can be unstable.
-In both formulas, the intercept is typically not penalised. Standardise numeric features before regularisation so features measured in large units do not dominate the penalty.
-3. What does lambda (λ) do?
-Lambda controls the strength of the penalty. In scikit-learn, the parameter is named alpha, and alpha plays the role of λ (the exact loss scaling convention can differ across libraries).
-
-The best λ is not chosen by looking at training error alone. Select it using validation data or cross-validation, then evaluate the final model on a separate test set.
-4. Python implementation: Ridge and Lasso
-Example uses scikit-learn. Replace the sample data with the cohort dataset.
-import numpy as np from sklearn.model_selection import train_test_split, GridSearchCV from sklearn.pipeline import make_pipeline from sklearn.preprocessing import StandardScaler from sklearn.linear_model import Ridge, Lasso from sklearn.metrics import mean_squared_error, r2_score  # X: feature matrix; y: continuous target (e.g., house price) X_train, X_test, y_train, y_test = train_test_split(     X, y, test_size=0.20, random_state=42 )  # Scale features inside the pipeline to avoid data leakage. ridge_pipe = make_pipeline(StandardScaler(), Ridge()) lasso_pipe = make_pipeline(StandardScaler(), Lasso(max_iter=20000))  # Search for a suitable penalty strength (alpha corresponds to lambda). param_grid = {"ridge__alpha": [0.001, 0.01, 0.1, 1, 10, 100]} ridge_search = GridSearchCV(     ridge_pipe, param_grid, cv=5, scoring="neg_mean_squared_error" ) ridge_search.fit(X_train, y_train) ridge_best = ridge_search.best_estimator_  param_grid = {"lasso__alpha": [0.001, 0.01, 0.1, 1, 10, 100]} lasso_search = GridSearchCV(     lasso_pipe, param_grid, cv=5, scoring="neg_mean_squared_error" ) lasso_search.fit(X_train, y_train) lasso_best = lasso_search.best_estimator_  for name, model in [("Ridge", ridge_best), ("Lasso", lasso_best)]:     pred = model.predict(X_test)     print(name, "best alpha:", model[-1].alpha)     print("Test RMSE:", mean_squared_error(y_test, pred) ** 0.5)     print("Test R²:", r2_score(y_test, pred)) 
-5. Logistic Regression: same regularisation idea
-Logistic Regression predicts a class probability using the sigmoid function. It is trained with log loss rather than squared-error loss. Ridge/L2 or Lasso/L1 penalties can be added to control coefficient size and reduce overfitting.
-from sklearn.linear_model import LogisticRegression from sklearn.pipeline import make_pipeline from sklearn.preprocessing import StandardScaler from sklearn.model_selection import GridSearchCV  # y is a binary class label, such as 0/1 logistic_pipe = make_pipeline(     StandardScaler(),     LogisticRegression(penalty="l2", solver="lbfgs", max_iter=5000) ) search = GridSearchCV(     logistic_pipe,     {"logisticregression__C": [0.001, 0.01, 0.1, 1, 10, 100]},     cv=5,     scoring="accuracy" ) search.fit(X_train, y_train) print("Best C:", search.best_params_) 
-Important: scikit-learn LogisticRegression uses C, the inverse of regularisation strength. Smaller C means stronger regularisation (roughly larger λ); larger C means weaker regularisation. For L1 logistic regression, use a solver that supports L1, such as liblinear or saga.
-6. Classroom summary
-Bias: model is too simple; it misses the true pattern.
-Variance: model is too sensitive to the training sample.
-Ridge (L2): shrinks coefficients; generally keeps all features.
-Lasso (L1): can shrink some coefficients to zero.
-Lambda: controls penalty strength; tune it with cross-validation.
-Regularisation trades a little fitting flexibility for better generalisation.
-Quick check for students
-A model has high training error and high validation error. What problem is likely?
-A model has very low training error but high validation error. What problem is likely?
-Which method can set a coefficient exactly to zero: Ridge or Lasso?
-What usually happens when λ becomes extremely large?
-Suggested answers: 1) Underfitting/high bias. 2) Overfitting/high variance. 3) Lasso. 4) Coefficients shrink strongly; the model may underfit.
